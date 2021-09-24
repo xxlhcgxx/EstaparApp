@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <img src="/Images/LogoEstapar.jpg" width="50%" height="30%" />
+
+    <p style="text-align:left">Programa com as seguintes funcionalidades:</p>
+    <ul style="text-align:left">
+        <li>Marcas de veíclos: CRUD</li>
+        <li>Modelos de veículos: CRUD</li>
+        <li>Manobristas: CRUD</li>
+        <li>Registro: CRUD</li>
+    </ul>
+
+    <br />
+    <p style="text-align:left"> Configuração da base de dados - Migration</p>
+    <ul style="text-align:left">
+        <li>Atualizar string de conexão nos arquivos: appsettings.json (ConnectionStrings/DefaultConnection) e Data/ApplicationDbContext (optionsBuilder.UseSqlServer)</li>
+        <li>Executar no console o comando: Update-Database</li>
+    </ul>
+
+    <br />
+    <p style="text-align:left"> Configuração da base de dados - Manual</p>
+    <ul style="text-align:left">
+        <li>Criação da base de dados: EstaparDataBase</li>
+        <li>Executar scripts da pasta EstaparApp/Database/ScriptsTable na ordem de execução</li>
+        <li>Executar scripts da pasta EstaparApp/Database/ScriptsInsert na ordem de execução</li>
+        <li>Atualizar string de conexão nos arquivos: appsettings.json (ConnectionStrings/DefaultConnection) e Data/ApplicationDbContext (optionsBuilder.UseSqlServer)</li>
+    </ul>
+
+    <br />
+    <p style="text-align:left"> Configuração da base de dados - Restaurar Banco de Dados</p>
+    <ul style="text-align:left">
+        <li>Restaurar backup do banco de dados da pasta: EstaparApp/Database/BkpBanco/Bkp_EstaparDataBase.bak</li>
+        <li>Atualizar string de conexão nos arquivos: appsettings.json (ConnectionStrings/DefaultConnection) e Data/ApplicationDbContext (optionsBuilder.UseSqlServer)</li>
+    </ul>
+</div>

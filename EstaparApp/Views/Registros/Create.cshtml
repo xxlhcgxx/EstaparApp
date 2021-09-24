@@ -1,0 +1,106 @@
+﻿@model EstaparApp.Models.Registro
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<h1>Novo Registro</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Entrada" class="control-label"></label>
+                <input asp-for="Entrada" class="form-control" type="date" />
+                <span asp-validation-for="Entrada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoraEntrada" class="control-label"></label>
+                <input asp-for="HoraEntrada" class="form-control" type="time" />
+                <span asp-validation-for="HoraEntrada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saida" class="control-label"></label>
+                <input asp-for="Saida" class="form-control" type="date" />
+                <span asp-validation-for="Saida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoraSaida" class="control-label"></label>
+                <input asp-for="HoraSaida" class="form-control" type="time" />
+                <span asp-validation-for="HoraSaida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MarcaId" class="control-label"></label>
+                <select asp-for="MarcaId" asp-items="@ViewBag.Marcas"></select>
+                <span asp-validation-for="MarcaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModeloId" class="control-label"></label>
+                <select asp-for="ModeloId" id="ModeloId"></select>
+                <span asp-validation-for="ModeloId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManobristaId" class="control-label"></label>
+                <select asp-for="ManobristaId" asp-items="@ViewBag.Manobristas"></select>
+                <span asp-validation-for="ManobristaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Placa" class="control-label"></label>
+                <input asp-for="Placa" class="text-uppercase form-control" />
+                <span asp-validation-for="Placa" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Manobrado" /> @Html.DisplayNameFor(model => model.Manobrado)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#MarcaId").change(function () {
+                var marcaId = "";
+                $("#MarcaId option:selected").each(function () {
+                    marcaId += $(this)[0].value;
+                });
+
+                $.ajax({
+                    url: '@Url.Action("ListaModelo", "Registros")',
+                    data: { id: marcaId },
+                    datatype: "json",
+                    success: function (data) {
+                        var items = [];
+                        $.each(data, function (i) {
+                            items.push("<option value=" + data[i].value + ">" + data[i].text + "</option>");
+                        });
+                        $("#ModeloId").html(items.join(' '));
+
+                    },
+                })
+            });
+
+        });
+
+        $(function () {
+            $("#Placa").mask("AAA-AAAA");
+        });
+
+    </script>
+}

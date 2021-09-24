@@ -1,0 +1,94 @@
+﻿@model IEnumerable<EstaparApp.Models.Registro>
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<h1>Registros</h1>
+
+<p>
+    <a asp-action="Create">Novo Registro</a>
+</p>
+<table id="registroTable" class="table table-striped table-bordered" style="width:100%;height:80%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Entrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraSaida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manobrista)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Placa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manobrado)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entrada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraEntrada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Saida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraSaida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manobrista)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Placa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manobrado)
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#registroTable').DataTable();
+        });
+    </script>
+}
