@@ -1,9 +1,5 @@
 # Estapar
 
-@{
-    ViewData["Title"] = "Home Page";
-}
-
 Programa com as seguintes funcionalidades:
 
 - Marcas de veíclos: CRUD
